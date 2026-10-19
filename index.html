@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Latihan UASA Sejarah Tingkatan 2 - Bab 1</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        display: ['Fredoka', 'cursive', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#2563eb',
+                            purple: '#7c3aed',
+                            amber: '#d97706',
+                            emerald: '#059669',
+                            rose: '#e11d48',
+                            bg: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 50%, #fef3c7 100%);
+            min-height: 100vh;
+        }
+        .card-friendly {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            border: 4px solid #ffffff;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+        }
+        .btn-friendly {
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .btn-friendly:hover:not(:disabled) {
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .btn-friendly:active:not(:disabled) {
+            transform: translateY(1px) scale(0.99);
+        }
+        .bubble-glow {
+            animation: bounceSlow 3s infinite ease-in-out;
+        }
+        @keyframes bounceSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen text-slate-800 antialiased selection:bg-amber-300">
+
+    <!-- Header Navbar -->
+    <header class="w-full bg-white/90 backdrop-blur-md border-b-4 border-blue-500 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-tr from-amber-400 to-amber-300 text-slate-900 p-2.5 rounded-2xl shadow-md border-2 border-white bubble-glow">
+                    <i class="fa-solid fa-globe text-2xl text-amber-900"></i>
+                </div>
+                <div>
+                    <h1 class="font-display text-lg sm:text-2xl font-black text-blue-600 leading-none">
+                        LATIHAN UASA SEJARAH T2 🏛️
+                    </h1>
+                    <p class="text-xs sm:text-sm text-emerald-700 font-extrabold tracking-wide mt-1">Bab 1: Kerajaan Alam Melayu</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <button id="fullscreenBtn" onclick="toggleFullScreen()" class="flex items-center gap-1.5 bg-purple-50 hover:bg-purple-100 text-purple-700 px-3 py-2 rounded-2xl text-xs sm:text-sm font-black transition-all border-2 border-purple-200">
+                    <i id="fullscreenIcon" class="fa-solid fa-expand text-purple-600"></i>
+                    <span id="fullscreenStatus" class="hidden sm:inline">Skrin Penuh</span>
+                </button>
+
+                <button id="bgmToggleBtn" onclick="toggleBGM()" class="flex items-center gap-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 px-3 py-2 rounded-2xl text-xs sm:text-sm font-black transition-all border-2 border-blue-200">
+                    <i id="bgmIcon" class="fa-solid fa-music text-amber-500"></i>
+                    <span id="bgmStatus" class="hidden sm:inline">Muzik: ON</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center p-3 sm:p-6">
+        <div class="w-full max-w-3xl">
+
+            <!-- 1. START SCREEN -->
+            <section id="startScreen" class="card-friendly rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden my-2 border-t-8 border-t-amber-400">
+                <div class="relative z-10">
+                    <span class="inline-block bg-amber-100 text-amber-800 border-2 border-amber-300 font-black text-xs uppercase tracking-wider px-4 py-1.5 rounded-full mb-3 shadow-sm bubble-glow">
+                        ⭐ Latihan Interaktif UASA Bab 1 ⭐
+                    </span>
+                    
+                    <h2 class="font-display text-2xl sm:text-4xl font-black text-slate-800 mb-2 leading-tight">
+                        Bab 1: Kerajaan Alam Melayu
+                    </h2>
+                    
+                    <p class="text-slate-600 font-extrabold text-sm sm:text-base mb-6 max-w-xl mx-auto leading-relaxed">
+                        Masa Cadangan: <span class="text-blue-600">40 Minit</span> • Jumlah Soalan: <span class="text-amber-600">30 Soalan</span> • Markah: <span class="text-emerald-600">30 Markah</span>
+                    </p>
+
+                    <!-- Student Registration Form -->
+                    <div class="bg-blue-50/80 p-5 rounded-3xl max-w-md mx-auto mb-6 border-2 border-blue-200 text-left shadow-inner">
+                        <label class="block text-xs font-black text-blue-900 uppercase mb-1">Nama Anda / Murid <span class="text-rose-500">*</span></label>
+                        <div class="relative mb-3">
+                            <i class="fa-solid fa-user-check absolute left-3.5 top-3.5 text-blue-400 text-lg"></i>
+                            <input type="text" id="playerName" placeholder="Contoh: Nur Aisyah" class="w-full bg-white border-2 border-blue-200 rounded-2xl py-3 pl-10 pr-3 text-sm font-bold text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all">
+                        </div>
+
+                        <label class="block text-xs font-black text-blue-900 uppercase mb-1">Kelas <span class="text-rose-500">*</span></label>
+                        <div class="relative mb-4">
+                            <i class="fa-solid fa-graduation-cap absolute left-3.5 top-3.5 text-blue-400 text-lg"></i>
+                            <input type="text" id="playerClass" placeholder="Contoh: 2 Amanah" class="w-full bg-white border-2 border-blue-200 rounded-2xl py-3 pl-10 pr-3 text-sm font-bold text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row justify-center gap-3">
+                        <button onclick="startQuiz()" class="btn-friendly bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-display text-lg sm:text-xl font-black px-8 py-3.5 rounded-2xl shadow-lg border-2 border-emerald-300 inline-flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-play-circle text-2xl"></i>
+                            <span>MULA MENCUBA!</span>
+                        </button>
+                        <button onclick="toggleLeaderboardModal(true)" class="btn-friendly bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-slate-900 font-display text-lg sm:text-xl font-black px-6 py-3.5 rounded-2xl shadow-lg border-2 border-amber-200 inline-flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-trophy text-slate-900"></i>
+                            <span>Papan Kedudukan</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. QUIZ SCREEN -->
+            <section id="quizScreen" class="hidden card-friendly rounded-3xl p-5 sm:p-8 relative my-2 border-t-8 border-t-blue-600">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-3 mb-4 pb-3 border-b-2 border-slate-100">
+                    <div class="flex items-center justify-between sm:justify-start gap-3">
+                        <span id="sectionBadge" class="bg-blue-100 text-blue-900 border-2 border-blue-200 text-xs font-black px-3.5 py-1.5 rounded-xl uppercase tracking-wider">
+                            Bahagian A: Konsep Alam Melayu
+                        </span>
+                        <div class="flex items-center gap-2 text-amber-900 text-xs sm:text-sm font-black bg-amber-100 px-3.5 py-1.5 rounded-xl border-2 border-amber-200">
+                            <i class="fa-solid fa-star text-amber-500 text-base"></i>
+                            <span>MARKAH: <span id="liveScore" class="text-base text-blue-700">0</span> / 30</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 text-xs font-black text-slate-700 bg-slate-100 px-3.5 py-1.5 rounded-xl border border-slate-200">
+                        <i class="fa-solid fa-user text-emerald-600"></i>
+                        <span id="displayPlayerInfo">Pelajar: -</span>
+                    </div>
+                </div>
+
+                <!-- Booster Cards Panel -->
+                <div class="mb-4 bg-gradient-to-r from-purple-100 via-pink-100 to-amber-100 p-3 rounded-2xl border-2 border-purple-200 shadow-sm flex flex-wrap items-center justify-between gap-2">
+                    <span class="text-xs font-black text-purple-900 uppercase tracking-wider flex items-center gap-1.5">
+                        <i class="fa-solid fa-wand-magic-sparkles text-purple-600 text-sm"></i> Kuasa Booster:
+                    </span>
+                    <div class="flex items-center gap-2">
+                        <button id="btn5050" onclick="useBooster5050()" class="btn-friendly bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-black px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow border border-indigo-300">
+                            <i class="fa-solid fa-scissors text-amber-300"></i>
+                            <span>50:50 (<span id="count5050">2</span>)</span>
+                        </button>
+                        <button id="btnHint" onclick="useBoosterHint()" class="btn-friendly bg-amber-500 hover:bg-amber-600 disabled:opacity-40 disabled:cursor-not-allowed text-slate-900 text-xs font-black px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow border border-amber-300">
+                            <i class="fa-solid fa-lightbulb text-white"></i>
+                            <span>Petunjuk (<span id="countHint">2</span>)</span>
+                        </button>
+                        <button id="btnSkip" onclick="useBoosterSkip()" class="btn-friendly bg-teal-600 hover:bg-teal-700 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-black px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow border border-teal-300">
+                            <i class="fa-solid fa-forward text-emerald-200"></i>
+                            <span>Lompat (<span id="countSkip">1</span>)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="flex justify-between text-xs text-slate-600 font-black mb-1">
+                    <span id="queueCountInfo">Baki Soalan: 30</span>
+                    <span id="progressPercentText" class="text-blue-600">0%</span>
+                </div>
+                <div class="w-full bg-slate-100 h-3.5 rounded-full mb-5 overflow-hidden p-0.5 border border-slate-200">
+                    <div id="progressBar" class="bg-gradient-to-r from-blue-500 via-emerald-400 to-amber-400 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+
+                <!-- Question Area -->
+                <div class="mb-5">
+                    <div class="flex items-start gap-3">
+                        <span id="questionNum" class="bg-blue-600 text-white font-display text-base font-black w-9 h-9 rounded-2xl flex items-center justify-center shrink-0 shadow-md">
+                            1
+                        </span>
+                        <h3 id="questionText" class="text-base sm:text-lg font-black text-slate-800 leading-snug pt-0.5 whitespace-pre-line">
+                            Memuatkan soalan...
+                        </h3>
+                    </div>
+                </div>
+
+                <!-- Options -->
+                <div id="optionsContainer" class="grid grid-cols-1 gap-2.5 mb-5"></div>
+
+                <!-- Hint Banner -->
+                <div id="hintBanner" class="hidden p-4 rounded-2xl mb-4 text-xs sm:text-sm font-extrabold bg-amber-100 text-amber-900 border-2 border-amber-300 flex items-start gap-2.5 shadow-sm">
+                    <i class="fa-solid fa-lightbulb text-amber-500 text-lg mt-0.5 shrink-0"></i>
+                    <div>
+                        <span class="font-black uppercase">Nota & Rujukan:</span> <span id="hintText" class="font-bold text-slate-800"></span>
+                    </div>
+                </div>
+
+                <!-- Feedback Banner -->
+                <div id="feedbackBanner" class="hidden p-4 rounded-2xl mb-4 text-sm font-bold flex items-start gap-3 border-2 shadow-sm">
+                    <i id="feedbackIcon" class="fa-solid text-2xl mt-0.5 shrink-0"></i>
+                    <div>
+                        <div id="feedbackTitle" class="font-black text-base"></div>
+                        <div id="feedbackText" class="mt-1 font-bold leading-relaxed"></div>
+                    </div>
+                </div>
+
+                <!-- Next Button -->
+                <div class="flex justify-end">
+                    <button id="nextBtn" onclick="nextQuestion()" class="hidden btn-friendly bg-blue-600 hover:bg-blue-700 text-white font-display font-black text-base px-8 py-3 rounded-2xl shadow-md inline-flex items-center gap-2">
+                        <span>Soalan Seterusnya</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- 3. RESULT SCREEN -->
+            <section id="resultScreen" class="hidden card-friendly rounded-3xl p-6 sm:p-10 text-center relative my-2 border-t-8 border-t-amber-400">
+                <div class="mb-3 inline-block bg-amber-100 p-4 rounded-full text-amber-600 border-2 border-amber-300 shadow-sm bubble-glow">
+                    <i class="fa-solid fa-trophy text-5xl"></i>
+                </div>
+
+                <h2 class="font-display text-3xl sm:text-4xl font-black text-slate-800 mb-1">
+                    Tahniah, <span id="resPlayerName" class="text-blue-600">Pelajar</span>! 🎉
+                </h2>
+                <p class="text-slate-600 font-extrabold text-sm sm:text-base mb-6">
+                    Anda telah menyelesaikan Set Latihan UASA Sejarah Tingkatan 2 Bab 1!
+                </p>
+
+                <!-- Score Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-lg mx-auto mb-6">
+                    <div class="bg-emerald-50 p-4 rounded-2xl border-2 border-emerald-200">
+                        <div class="text-xs text-emerald-800 font-black uppercase">Jumlah Markah</div>
+                        <div id="finalScore" class="font-display text-3xl font-black text-emerald-600 mt-0.5">30 / 30</div>
+                    </div>
+                    <div class="bg-amber-50 p-4 rounded-2xl border-2 border-amber-200">
+                        <div class="text-xs text-amber-800 font-black uppercase">Ketepatan Percubaan 1</div>
+                        <div id="accuracyPercent" class="font-display text-3xl font-black text-amber-600 mt-0.5">100%</div>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-2xl border-2 border-indigo-200 col-span-2 sm:col-span-1">
+                        <div class="text-xs text-indigo-800 font-black uppercase">Ulang Percubaan</div>
+                        <div id="wrongAttemptsCount" class="font-display text-3xl font-black text-indigo-600 mt-0.5">0</div>
+                    </div>
+                </div>
+
+                <div id="performanceBadge" class="mb-4 inline-block px-5 py-2 rounded-2xl font-black text-sm uppercase tracking-wide border-2">
+                    Penguasaan Baik
+                </div>
+
+                <div id="motivationMsg" class="bg-slate-50 p-4 rounded-2xl border-2 border-slate-200 mb-6 max-w-lg mx-auto text-sm text-slate-700 font-extrabold leading-relaxed">
+                    -
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-3">
+                    <button onclick="restartQuiz()" class="btn-friendly bg-blue-600 hover:bg-blue-700 text-white font-display font-black text-lg px-8 py-3.5 rounded-2xl shadow-lg inline-flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span>Cuba Semula Set Ini</span>
+                    </button>
+                    <button onclick="toggleLeaderboardModal(true)" class="btn-friendly bg-amber-400 hover:bg-amber-500 text-slate-900 font-display text-lg px-6 py-3.5 rounded-2xl shadow-lg border-2 border-amber-200 inline-flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-list-ol"></i>
+                        <span>Papan Kedudukan</span>
+                    </button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Leaderboard Modal -->
+    <div id="leaderboardModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl p-6 w-full max-w-lg shadow-2xl border-4 border-amber-400 relative max-h-[90vh] flex flex-col">
+            <button onclick="toggleLeaderboardModal(false)" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl w-9 h-9 flex items-center justify-center rounded-full bg-slate-100">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-4">
+                <div class="inline-block bg-amber-100 text-amber-600 p-3 rounded-full mb-1">
+                    <i class="fa-solid fa-award text-3xl"></i>
+                </div>
+                <h3 class="font-display text-2xl font-black text-slate-800">Papan Kedudukan UASA</h3>
+                <p class="text-xs font-extrabold text-slate-500">Rekod Markah Sejarah Tingkatan 2 Bab 1</p>
+            </div>
+
+            <div id="leaderboardList" class="flex-grow overflow-y-auto space-y-2 pr-1 my-2"></div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+                <button onclick="clearLeaderboard()" class="text-rose-500 hover:underline font-black">Padam Rekod</button>
+                <button onclick="toggleLeaderboardModal(false)" class="bg-slate-800 text-white font-black px-6 py-2 rounded-xl">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="w-full text-center py-4 text-xs font-black text-slate-500 bg-white/80 border-t border-slate-200">
+        Latihan UASA Sejarah Tingkatan 2 • Bab 1: Kerajaan Alam Melayu
+    </footer>
+
+    <!-- JavaScript Quiz Logic -->
+    <script>
+        function setSafeText(id, text) {
+            const el = document.getElementById(id);
+            if (el) el.innerText = text;
+        }
+
+        function toggleFullScreen() {
+            const doc = document.documentElement;
+            const icon = document.getElementById('fullscreenIcon');
+            const statusText = document.getElementById('fullscreenStatus');
+
+            if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+                if (doc.requestFullscreen) {
+                    doc.requestFullscreen();
+                } else if (doc.msRequestFullscreen) {
+                    doc.msRequestFullscreen();
+                } else if (doc.mozRequestFullScreen) {
+                    doc.mozRequestFullScreen();
+                } else if (doc.webkitRequestFullscreen) {
+                    doc.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+                }
+                if (icon) icon.className = "fa-solid fa-compress text-purple-600";
+                if (statusText) statusText.innerText = "Keluar Skrin Penuh";
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                }
+                if (icon) icon.className = "fa-solid fa-expand text-purple-600";
+                if (statusText) statusText.innerText = "Skrin Penuh";
+            }
+        }
+
+        const rawQuestionsDatabase = [
+            // Bahagian A: Konsep Alam Melayu (1 - 4)
+            {
+                id: 1,
+                section: "Bahagian A: Konsep Alam Melayu",
+                question: "1. Konsep Alam Melayu boleh dihuraikan melalui beberapa aspek.\nI. Geografi\nII. Bahasa\nIII. Budaya\nIV. Sistem pemerintahan\n\nApakah aspek yang digunakan untuk menjelaskan konsep Alam Melayu?",
+                options: ["A. I dan II", "B. II dan IV", "C. I, II dan III", "D. II, III dan IV"],
+                correctIndex: 2, // C
+                explanation: "Jawapan tepat: C. I, II dan III. Konsep Alam Melayu dibahas dan dijelaskan menerusi tiga aspek utama iaitu Geografi, Bahasa dan Budaya."
+            },
+            {
+                id: 2,
+                section: "Bahagian A: Konsep Alam Melayu",
+                question: "2. Seorang tokoh mengemukakan pandangan bahawa Alam Melayu meliputi kawasan dari Madagaskar ke Tanah Melayu, Papua New Guinea, Australia, New Zealand, Kepulauan Pasifik dan Taiwan.\nSiapakah tokoh tersebut?",
+                options: [
+                    "A. Profesor Emeritus Dato’ Dr. Nik Hassan Shuhaimi Nik Abdul Rahman",
+                    "B. Pendeta (Dr.) Ismail Hussein",
+                    "C. Alfred Russel Wallace",
+                    "D. Profesor Dr. Ding Choo Ming"
+                ],
+                correctIndex: 0, // A
+                explanation: "Jawapan tepat: A. Profesor Emeritus Dato’ Dr. Nik Hassan Shuhaimi Nik Abdul Rahman mengemukakan lingkungan geografi luas Alam Melayu dari Madagaskar sehingga ke Taiwan dan Kepulauan Pasifik."
+            },
+            {
+                id: 3,
+                section: "Bahagian A: Konsep Alam Melayu",
+                question: "3. Perhatikan persamaan perkataan bagi beberapa bahasa di Alam Melayu.\n- Bahasa Melayu: Empat\n- Bahasa Jawa: Papat\n- Bahasa Melayu Brunei: Ampat\n- Bahasa Tagalog: Apat\n\nApakah kesimpulan yang dapat dibuat berdasarkan maklumat tersebut?",
+                options: [
+                    "A. Semua bahasa tersebut mempunyai sebutan yang sama sepenuhnya.",
+                    "B. Bahasa-bahasa tersebut hanya digunakan di sebuah negara.",
+                    "C. Perbezaan sebutan menunjukkan bahawa bahasa-bahasa tersebut tidak mempunyai hubungan.",
+                    "D. Bahasa-bahasa tersebut mempunyai pertalian kekeluargaan atau keserumpunan bahasa."
+                ],
+                correctIndex: 3, // D
+                explanation: "Jawapan tepat: D. Persamaan dan kemiripan perkataan membuktikan bahasa-bahasa di Alam Melayu tergolong dalam rumpun bahasa Austronesia dan mempunyai keserumpunan."
+            },
+            {
+                id: 4,
+                section: "Bahagian A: Konsep Alam Melayu",
+                question: "4. Antara berikut, yang manakah menunjukkan persamaan budaya masyarakat Alam Melayu?",
+                options: [
+                    "A. Penguasaan Selat Melaka dan Selat Sunda",
+                    "B. Amalan gotong-royong, seni mempertahankan diri dan persembahan wayang kulit",
+                    "C. Penghantaran utusan kepada kerajaan China",
+                    "D. Pembukaan pusat kerajaan di Lembah Sungai Mekong"
+                ],
+                correctIndex: 1, // B
+                explanation: "Jawapan tepat: B. Penduduk Alam Melayu berkongsi kebudayaan serumpun seperti tradisi gotong-royong, seni silat/mempertahankan diri, serta seni wayang kulit."
+            },
+
+            // Bahagian B: Kewujudan dan Kemasyhuran Kerajaan Alam Melayu (5 - 18)
+            {
+                id: 5,
+                section: "Bahagian B: Kewujudan & Kemasyhuran Kerajaan",
+                question: "5. Kerajaan Alam Melayu muncul melalui proses perkembangan petempatan.\nApakah urutan perkembangan tersebut?",
+                options: [
+                    "A. Petempatan kecil → pelabuhan → kerajaan",
+                    "B. Kerajaan → petempatan kecil → pelabuhan",
+                    "C. Pelabuhan → kerajaan → petempatan kecil",
+                    "D. Pelabuhan → petempatan kecil → kerajaan"
+                ],
+                correctIndex: 0, // A
+                explanation: "Jawapan tepat: A. Petempatan bermula daripada petempatan kecil persisiran/lembah sungai yang berkembang menjadi pelabuhan, seterusnya membina kerajaan."
+            },
+            {
+                id: 6,
+                section: "Bahagian B: Kewujudan & Kemasyhuran Kerajaan",
+                question: "6. Maklumat berikut berkaitan dengan sebuah kerajaan Alam Melayu.\n- Terletak di Lembah Sungai Mekong.\n- Muncul pada abad pertama.\n- Berpusat di Vyadhapura.\n\nKerajaan manakah yang dimaksudkan?",
+                options: ["A. Champa", "B. Angkor", "C. Funan", "D. Srivijaya"],
+                correctIndex: 2, // C
+                explanation: "Jawapan tepat: C. Funan. Kerajaan Funan muncul pada abad pertama di Lembah Sungai Mekong dengan Vyadhapura sebagai pusat utamanya."
+            },
+            {
+                id: 7,
+                section: "Bahagian B: Kewujudan & Kemasyhuran Kerajaan",
+                question: "7. Kerajaan manakah yang diasaskan oleh Chu-Lien pada tahun 192 Masihi dan berpusat di Indrapura?",
+                options: ["A. Funan", "B. Majapahit", "C. Kedah Tua", "D. Champa"],
+                correctIndex: 3, // D
+                explanation: "Jawapan tepat: D. Champa diasaskan oleh Chu-Lien pada tahun 192 Masihi dan berpusat awal di Indrapura."
+            },
+            {
+                id: 8,
+                section: "Bahagian B: Kewujudan & Kemasyhuran Kerajaan",
+                question: "8. Dapunta Hyang Sri Jayanasa mengasaskan sebuah kerajaan di Palembang pada tahun 683 Masihi.\nKerajaan manakah yang dimaksudkan?",
+                options: ["A. Gangga Nagara", "B. Srivijaya", "C. Angkor", "D. Majapahit"],
+                correctIndex: 1, // B
+                explanation: "Jawapan tepat: B. Srivijaya diasaskan oleh Dapunta Hyang Sri Jayanasa di Palembang pada abad ketujuh (683 Masihi)."
+            },
+            {
+                id: 9,
+                section: "Bahagian B: Kewujudan & Kemasyhuran Kerajaan",
+                question: "9. Pernyataan manakah memadankan kerajaan dengan lokasi, zaman kemunculan dan pusat kerajaannya secara tepat?",
+                options: [
+                    "A. Majapahit — Lembah Sungai Brantas, Jawa Timur; abad ke-13; Kota Trowulan",
+                    "B. Champa — Lembah Sungai Mekong; abad pertama; Vyadhapura",
+                    "C. Angkor — selatan dan tengah Vietnam; abad kedua; Indrapura",
+                    "D. Kedah Tua — Lembah Sungai Mekong; abad kesembilan; Hariharalaya"
+                ],
+                correctIndex: 0, // A
+                explanation: "Jawapan tepat: A. Majapahit berpusat di Kota Trowulan, terletak di Lembah Sungai Brantas, Jawa Timur dan muncul pada abad ke-13."
+            },
+            {
+                id: 10,
+                section: "Bahagian B: Kewujudan & Kemasyhuran Kerajaan",
+                question: "10. Fan Shih-man meluaskan empayar Funan sehingga menguasai kawasan yang strategik di laluan perdagangan antara timur dengan barat.\nApakah kesan utama kejayaan tersebut?",
+                options: [
+                    "A. Funan menjadi pusat pengajian agama Buddha yang utama.",
+                    "B. Funan berjaya menghapuskan semua kerajaan di Asia Tenggara.",
+                    "C. Funan menjadi pusat pembinaan candi Hindu.",
+                    "D. Funan berkembang menjadi pusat perdagangan utama di Alam Melayu pada abad ketiga."
+                ],
+                correctIndex: 3, // D
+                explanation: "Jawapan tepat: D. Kejayaan Fan Shih-man membolehkan Funan berkembang pesat menjadi pusat perdagangan maritim utama di Alam Melayu menjelang abad ketiga."
+            },
+            {
+                id: 11,
+                section: "Bahagian B: Kewujudan & Kemasyhuran Kerajaan",
+                question: "11. Kerajaan Funan mengalami kemerosotan selepas mencapai kegemilangan.\nApakah faktor yang menyebabkan kemerosotan tersebut?",
+                options: [
+                    "A. Serangan tentera Chola dari India pada tahun 1025",
+                    "B. Serangan kerajaan Siam pada tahun 1594",
+                    "C. Serangan kerajaan Chenla dari utara Funan",
+                    "D. Serangan kerajaan Demak pada tahun 1478"
+                ],
+                correctIndex: 2, // C
+                explanation: "Jawapan tepat: C. Kemerosotan Funan berpunca daripada serangan kerajaan Chenla yang terletak di bahagian utara Funan."
+            },
+            {
+                id: 12,
+                section: "Bahagian B: Kewujudan & Kemasyhuran Kerajaan",
+                question: "12. Pernyataan manakah yang tepat tentang kerajaan Champa?",
+                options: [
+                    "A. Kemasyhurannya bermula di bawah Che Bong Nga dan kerajaan ini ditawan oleh Dai Viet pada tahun 1471.",
+                    "B. Kerajaan ini diasaskan oleh Jayavarman II dan berpusat di Hariharalaya.",
+                    "C. Kerajaan ini dilemahkan oleh serangan Chola pada tahun 1025.",
+                    "D. Kerajaan ini diasaskan oleh Dapunta Hyang Sri Jayanasa di Palembang."
+                ],
+                correctIndex: 0, // A
+                explanation: "Jawapan tepat: A. Champa mencapai era kegemilangan zaman Che Bong Nga namun akhirnya tewas dan ditawan oleh Dai Viet pada tahun 1471."
+            },
+            {
+                id: 13,
+                section: "Bahagian B: Kewujudan & Kemasyhuran Kerajaan",
+                question: "13. Srivijaya menguasai Selat Melaka dan Selat Sunda semasa zaman kegemilangannya.\nMengapakah penguasaan tersebut penting?",
+                options: [
+                    "A. Membolehkan Srivijaya menguasai semua kawasan pertanian di Alam Melayu.",
+                    "B. Membolehkan Srivijaya menguasai laluan perdagangan laut antarabangsa dan menjadi kuasa perdagangan utama.",
+                    "C. Menjadikan Srivijaya pusat pemerintahan kerajaan Champa.",
+                    "D. Membolehkan Srivijaya menghapuskan semua kegiatan perdagangan laut."
+                ],
+                correctIndex: 1, // B
+                explanation: "Jawapan tepat: B. Kawalan ke atas dua laluan strategik (Selat Melaka & Selat Sunda) menjamin penguasaan Srivijaya ke atas perdagangan laut antarabangsa."
+            },
+            {
+                id: 14,
+                section: "Bahagian B: Kewujudan & Kemasyhuran Kerajaan",
+                question: "14. Jayavarman VII meluaskan empayar Angkor hingga ke sempadan Annam.\nApakah sumbangan lain baginda kepada kerajaan Angkor?",
+                options: [
+                    "A. Mengasaskan kerajaan Funan di Vyadhapura.",
+                    "B. Mengasaskan kerajaan Srivijaya di Palembang.",
+                    "C. Menguasai Selat Melaka dan Selat Sunda.",
+                    "D. Membina Angkor Thom dan mendirikan 102 buah hospital."
+                ],
+                correctIndex: 3, // D
+                explanation: "Jawapan tepat: D. Jayavarman VII membina ibu kota Angkor Thom, Candi Bayon serta 102 buah hospital bagi kebajikan rakyatnya."
+            },
+            {
+                id: 15,
+                section: "Bahagian B: Kewujudan & Kemasyhuran Kerajaan",
+                question: "15. Patih Gajah Mada memainkan peranan penting dalam kegemilangan Majapahit.\nApakah sumbangan beliau?",
+                options: [
+                    "A. Mengasaskan kerajaan Champa pada tahun 192 Masihi.",
+                    "B. Mempertahankan Gangga Nagara daripada serangan Chola pada tahun 1025.",
+                    "C. Mengembalikan keamanan dan keselamatan Majapahit serta meluaskan wilayah kekuasaannya.",
+                    "D. Menyatukan wilayah Lembah Sungai Mekong dan membina Angkor Thom."
+                ],
+                correctIndex: 2, // C
+                explanation: "Jawapan tepat: C. Patih Gajah Mada berjaya memulihkan keamanan Majapahit serta merealisasikan ikrar Sumpah Palapa untuk menyatukan wilayah di Alam Melayu."
+            },
+            {
+                id: 16,
+                section: "Bahagian B: Kewujudan & Kemasyhuran Kerajaan",
+                question: "16. Kerajaan Kedah Tua dikenali dengan nama yang berbeza dalam sumber luar.\nPadanan manakah yang betul?",
+                options: [
+                    "A. Sumber China — Chieh Ch’a; sumber India — Kataha; sumber Arab-Parsi — Kalah-bar",
+                    "B. Sumber China — Kataha; sumber India — Chieh Ch’a; sumber Arab-Parsi — Kalah-bar",
+                    "C. Sumber China — Kalah-bar; sumber India — Chieh Ch’a; sumber Arab-Parsi — Kataha",
+                    "D. Semua sumber luar menggunakan nama Palembang untuk merujuk Kedah Tua."
+                ],
+                correctIndex: 0, // A
+                explanation: "Jawapan tepat: A. Kedah Tua dirujuk sebagai Chieh Ch’a (China), Kataha (India) dan Kalah-bar (Arab-Parsi)."
+            },
+            {
+                id: 17,
+                section: "Bahagian B: Kewujudan & Kemasyhuran Kerajaan",
+                question: "17. Kerajaan Gangga Nagara terkenal dengan kekayaan hasil bumi seperti emas dan bijih timah. Kerajaan ini kemudiannya mengalami kemerosotan apabila pelabuhannya dimusnahkan.\nApakah peristiwa yang menyebabkan kemerosotan tersebut?",
+                options: [
+                    "A. Serangan Chenla dari utara",
+                    "B. Serangan Siam pada tahun 1594",
+                    "C. Serangan Demak pada tahun 1478",
+                    "D. Serangan tentera Chola dari India pada tahun 1025"
+                ],
+                correctIndex: 3, // D
+                explanation: "Jawapan tepat: D. Serangan angkatan tentera Chola dari India pada tahun 1025 melumpuhkan serta memusnahkan pelabuhan Gangga Nagara."
+            },
+            {
+                id: 18,
+                section: "Bahagian B: Kewujudan & Kemasyhuran Kerajaan",
+                question: "18. Antara berikut, yang manakah menunjukkan kronologi yang tepat bagi kerajaan Gangga Nagara?",
+                options: [
+                    "A. Muncul sebagai kerajaan pada abad kelima, menjadi masyhur pada abad keenam dan diserang Chola pada tahun 1471.",
+                    "B. Berfungsi sebagai pusat pelabuhan sejak abad kelima, muncul sebagai kerajaan pada abad keenam dan mencapai kemasyhuran pada abad kesembilan. Serangan Chola pada tahun 1025 melemahkannya.",
+                    "C. Diasaskan pada tahun 192 Masihi, berkembang pada abad ketiga dan diserang Chenla.",
+                    "D. Diasaskan pada tahun 683 Masihi, berpusat di Palembang dan diserang Chola pada tahun 1025."
+                ],
+                correctIndex: 1, // B
+                explanation: "Jawapan tepat: B. Gangga Nagara berfungsi sebagai pelabuhan abad ke-5, muncul kerajaan abad ke-6, masyhur abad ke-9 dan merosot akibat serangan Chola 1025."
+            },
+
+            // Bahagian C: Kerajaan Alam Melayu dan Kerajaan Luar yang Sezaman (19 - 21)
+            {
+                id: 19,
+                section: "Bahagian C: Kerajaan Luar Sezaman",
+                question: "19. Pada abad pertama, kerajaan Funan muncul sezaman dengan beberapa kerajaan luar.\nAntara berikut, yang manakah merupakan kerajaan luar tersebut?",
+                options: [
+                    "A. Kerajaan Abbasiyah, Empayar Byzantine dan Dinasti Tang",
+                    "B. Empayar Mongol, Kerajaan Turki Uthmaniyah dan Kesultanan Delhi",
+                    "C. Empayar Rom, Empayar Parsi, Empayar Kushan dan Dinasti Han",
+                    "D. Kerajaan Chola, Empayar Byzantine dan Kerajaan Abbasiyah sahaja"
+                ],
+                correctIndex: 2, // C
+                explanation: "Jawapan tepat: C. Kerajaan Funan (abad ke-1) sezaman dengan Empayar Rom, Empayar Parsi, Empayar Kushan dan Dinasti Han."
+            },
+            {
+                id: 20,
+                section: "Bahagian C: Kerajaan Luar Sezaman",
+                question: "20. Pada abad kesembilan, kerajaan Champa, Srivijaya dan Angkor muncul sezaman dengan kerajaan luar.\nPilih kumpulan kerajaan luar yang betul.",
+                options: [
+                    "A. Kerajaan Abbasiyah, Empayar Byzantine, Dinasti Tang dan Kerajaan Chola",
+                    "B. Empayar Rom, Empayar Parsi, Empayar Kushan dan Dinasti Han",
+                    "C. Empayar Mongol, Kerajaan Turki Uthmaniyah dan Kesultanan Delhi",
+                    "D. Kerajaan Funan, Majapahit dan Kedah Tua"
+                ],
+                correctIndex: 0, // A
+                explanation: "Jawapan tepat: A. Abad kesembilan memperlihatkan kebersamaan era dengan Kerajaan Abbasiyah, Empayar Byzantine, Dinasti Tang dan Kerajaan Chola."
+            },
+            {
+                id: 21,
+                section: "Bahagian C: Kerajaan Luar Sezaman",
+                question: "21. Pada abad ke-14, Champa, Angkor dan Majapahit merupakan kerajaan Alam Melayu yang sezaman dengan kerajaan luar.\nAntara berikut, yang manakah merupakan kerajaan luar tersebut?",
+                options: [
+                    "A. Empayar Rom, Empayar Parsi dan Dinasti Han",
+                    "B. Kerajaan Abbasiyah, Dinasti Tang dan Kerajaan Chola",
+                    "C. Kerajaan Funan, Srivijaya dan Kedah Tua",
+                    "D. Empayar Mongol, Kerajaan Turki Uthmaniyah dan Kesultanan Delhi"
+                ],
+                correctIndex: 3, // D
+                explanation: "Jawapan tepat: D. Abad ke-14 sezaman dengan kegemilangan Empayar Mongol, Kerajaan Turki Uthmaniyah, Dinasti Ming dan Kesultanan Delhi."
+            },
+
+            // Bahagian D: Hubungan Kerajaan Alam Melayu dengan Kerajaan Luar (22 - 30)
+            {
+                id: 22,
+                section: "Bahagian D: Hubungan Kerajaan Luar",
+                question: "22. Kedudukan strategik kerajaan Alam Melayu di laluan perdagangan timur dan barat serta kekayaan hasil buminya menarik kedatangan pedagang luar.\nApakah kesan utama perkembangan hubungan perdagangan tersebut?",
+                options: [
+                    "A. Kerajaan Alam Melayu kehilangan semua sumber hasil bumi.",
+                    "B. Kemakmuran ekonomi kerajaan Alam Melayu meningkat.",
+                    "C. Hubungan antara kerajaan Alam Melayu dengan kerajaan luar terputus.",
+                    "D. Kegiatan perdagangan hanya tertumpu pada kawasan pedalaman."
+                ],
+                correctIndex: 1, // B
+                explanation: "Jawapan tepat: B. Pertukaran dagangan dan interaksi antarabangsa memangkinkan kemakmuran dan kepesatan ekonomi kerajaan tempatan."
+            },
+            {
+                id: 23,
+                section: "Bahagian D: Hubungan Kerajaan Luar",
+                question: "23. Kerajaan Srivijaya menghantar utusan ke China pada abad ketujuh.\nApakah tujuan penghantaran utusan tersebut?",
+                options: [
+                    "A. Mendapatkan pengiktirafan serta memperkukuh hubungan persahabatan dan perdagangan",
+                    "B. Memohon bantuan tentera untuk melawan Dai Viet",
+                    "C. Memulihkan hubungan selepas berperang dengan Dai Viet",
+                    "D. Mengelakkan hubungan perdagangan dengan kerajaan luar"
+                ],
+                correctIndex: 0, // A
+                explanation: "Jawapan tepat: A. Utusan Srivijaya ke China bertuan merapatkan hubungan diplomatik persahabatan serta mengesahkan ikatan perdagangan."
+            },
+            {
+                id: 24,
+                section: "Bahagian D: Hubungan Kerajaan Luar",
+                question: "24. Pada abad ketiga, Funan dan Champa menghantar utusan ke China dengan tujuan yang berbeza.\nPernyataan manakah yang tepat?",
+                options: [
+                    "A. Funan ingin menjalinkan persahabatan, manakala Champa ingin mendapatkan bantuan tentera daripada Dinasti Han untuk menyerang Srivijaya.",
+                    "B. Funan ingin memperkukuh hubungan keagamaan dengan India, manakala Champa ingin menguasai Selat Sunda.",
+                    "C. Funan memohon bantuan ketenteraan untuk melawan Dai Viet, manakala Champa berusaha memulihkan hubungan selepas berperang dengan sekutu China, iaitu Dai Viet.",
+                    "D. Funan ingin mendapatkan pengiktirafan perdagangan, manakala Champa ingin menguasai pelabuhan Palembang."
+                ],
+                correctIndex: 2, // C
+                explanation: "Jawapan tepat: C. Funan memerlukan bantuan tentera menentang ancaman Dai Viet, manakala Champa bertindak memulihkan ikatan diplomatik selepas konflik."
+            },
+            {
+                id: 25,
+                section: "Bahagian D: Hubungan Kerajaan Luar",
+                question: "25. Hubungan diplomatik kerajaan Alam Melayu dengan India turut melibatkan kegiatan perdagangan, keagamaan dan persahabatan.\nPernyataan manakah yang tepat?",
+                options: [
+                    "A. Funan menghantar utusan ke India pada abad kesembilan untuk mendapatkan bantuan tentera menentang Dai Viet.",
+                    "B. Srivijaya menghantar utusan ke India pada abad ketiga untuk memulihkan hubungan dengan China.",
+                    "C. Majapahit menghantar utusan ke India pada abad ke-12 untuk meminta bantuan menentang Chenla.",
+                    "D. Funan menghantar utusan ke India pada abad ketiga untuk memperkukuh hubungan perdagangan dan keagamaan, manakala Srivijaya menghantar utusan pada abad kesembilan untuk mengeratkan hubungan persahabatan dan keagamaan."
+                ],
+                correctIndex: 3, // D
+                explanation: "Jawapan tepat: D. Utusan Funan (abad ke-3) memfokuskan perdagangan & keagamaan, manakala utusan Srivijaya (abad ke-9) mengeratkan keagamaan dan persahabatan (membina biara di Nalanda)."
+            },
+            {
+                id: 26,
+                section: "Bahagian D: Hubungan Kerajaan Luar",
+                question: "26. Penyebaran agama Hindu, Buddha dan Islam ke Alam Melayu berlaku melalui cara yang berbeza.\nPadanan manakah yang betul?",
+                options: [
+                    "A. Hindu — sami yang dihantar oleh Asoka; Buddha — golongan Brahmin sahaja; Islam — tentera sahaja",
+                    "B. Hindu — pedagang, tentera dan golongan Brahmin; Buddha — sami yang dihantar oleh Asoka; Islam — pedagang, pemerintah dan pendakwah",
+                    "C. Hindu — pemerintah China sahaja; Buddha — pedagang Arab-Parsi sahaja; Islam — golongan Brahmin",
+                    "D. Hindu, Buddha dan Islam — disebarkan melalui satu kaedah yang sama sahaja"
+                ],
+                correctIndex: 1, // B
+                explanation: "Jawapan tepat: B. Hindu disebar oleh pedagang/Brahmin; Buddha digiatkan oleh sami tajaan Asoka; Islam melalui saluran pedagang, pemerintah, & mubaligh."
+            },
+            {
+                id: 27,
+                section: "Bahagian D: Hubungan Kerajaan Luar",
+                question: "27. Penyebaran agama Hindu, Buddha dan Islam ke Alam Melayu mempengaruhi pelbagai aspek kehidupan masyarakat.\nAntara berikut, yang manakah menunjukkan pengaruh tersebut?",
+                options: [
+                    "A. Pentadbiran, perundangan, ekonomi dan sosiobudaya",
+                    "B. Pertanian sahaja",
+                    "C. Sistem pengangkutan sahaja",
+                    "D. Pertahanan ketenteraan sahaja"
+                ],
+                correctIndex: 0, // A
+                explanation: "Jawapan tepat: A. Pengaruh keagamaan membentuk struktur pentadbiran (konsep dewaraja/sultan), undang-undang, corak ekonomi dan adat sosiobudaya."
+            },
+            {
+                id: 28,
+                section: "Bahagian D: Hubungan Kerajaan Luar",
+                question: "28. Apakah maksud hubungan diplomatik berdasarkan kandungan buku teks?",
+                options: [
+                    "A. Hubungan perdagangan antara pedagang dalam sebuah kerajaan sahaja",
+                    "B. Hubungan keagamaan antara golongan pendeta sahaja",
+                    "C. Hubungan politik antara dua kerajaan",
+                    "D. Hubungan kebudayaan antara penduduk sebuah kampung sahaja"
+                ],
+                correctIndex: 2, // C
+                explanation: "Jawapan tepat: C. Hubungan diplomatik merujuk secara khusus kepada ikatan perhubungan politik formal yang dijalinkan antara dua buah kerajaan."
+            },
+            {
+                id: 29,
+                section: "Bahagian D: Hubungan Kerajaan Luar",
+                question: "29. Peta dalam buku teks menunjukkan hubungan perdagangan antara Alam Melayu dengan kerajaan luar dari abad pertama hingga abad ke-15.\nApakah rumusan paling tepat berdasarkan maklumat tersebut?",
+                options: [
+                    "A. Kerajaan Alam Melayu tidak mempunyai hubungan dengan kerajaan luar.",
+                    "B. Keterbukaan pemerintah dalam menjalinkan hubungan perdagangan membantu membawa kemakmuran ekonomi.",
+                    "C. Perdagangan hanya berlaku antara kerajaan Alam Melayu sahaja.",
+                    "D. Hubungan perdagangan tidak memberikan kesan terhadap perkembangan kerajaan."
+                ],
+                correctIndex: 1, // B
+                explanation: "Jawapan tepat: B. Sikap terbuka raja dan masyarakat Alam Melayu berdagang dengan kuasa luar merupakan teras kemakmuran ekonomi rantau ini."
+            },
+            {
+                id: 30,
+                section: "Bahagian D: Hubungan Kerajaan Luar",
+                question: "30. Bab ini menunjukkan bahawa kerajaan Alam Melayu mempunyai tamadun yang berkembang maju dan menjalin hubungan dengan kerajaan luar.\nApakah iktibar yang paling sesuai untuk generasi kini?",
+                options: [
+                    "A. Mengutamakan kepentingan sendiri dan mengelakkan kerjasama antarabangsa.",
+                    "B. Mengabaikan warisan sejarah kerana kerajaan tersebut telah lama berakhir.",
+                    "C. Menolak semua pengaruh dan hubungan dengan masyarakat luar.",
+                    "D. Menghargai warisan sejarah, bersikap terbuka, saling menghormati dan bekerjasama untuk kemakmuran negara."
+                ],
+                correctIndex: 3, // D
+                explanation: "Jawapan tepat: D. Generasi muda wajar menghargai warisan kecemerlangan silam, mengamalkan sikap terbuka dan menjalin kerjasama demi kemajuan negara."
+            }
+        ];
+
+        let playerInfo = { name: "", class: "" };
+        let questionQueue = [];
+        let totalOriginalQuestions = 0;
+        let initialScore = 0;
+        let totalFirstAttempts = 0;
+        let wrongAttempts = 0;
+        let isBGMPlaying = false;
+        let canAnswer = true;
+
+        let boosterCounts = { c5050: 2, cHint: 2, cSkip: 1 };
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                try {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                } catch(e) {}
+            }
+        }
+
+        let bgmInterval = null;
+        function playBGMNotes() {
+            if (!isBGMPlaying || !audioCtx) return;
+            const notes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25];
+            const note = notes[Math.floor(Math.random() * notes.length)];
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(note, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.01, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.2);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 1.2);
+            } catch (e) {}
+        }
+
+        function toggleBGM() {
+            initAudio();
+            isBGMPlaying = !isBGMPlaying;
+            const statusText = document.getElementById('bgmStatus');
+            const icon = document.getElementById('bgmIcon');
+
+            if (isBGMPlaying) {
+                if (audioCtx && audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                if (statusText) statusText.innerText = "Muzik: ON";
+                if (icon) icon.className = "fa-solid fa-music text-amber-500 animate-bounce";
+                bgmInterval = setInterval(playBGMNotes, 550);
+            } else {
+                if (statusText) statusText.innerText = "Muzik: OFF";
+                if (icon) icon.className = "fa-solid fa-volume-xmark text-slate-400";
+                clearInterval(bgmInterval);
+            }
+        }
+
+        function playSFX(type) {
+            initAudio();
+            if (!audioCtx) return;
+
+            try {
+                if (type === 'correct') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08);
+                    osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.16);
+                    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.35);
+                } else if (type === 'wrong') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(175, audioCtx.currentTime + 0.12);
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.3);
+                } else if (type === 'booster') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.1);
+                    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.25);
+                } else if (type === 'complete') {
+                    [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+                        const o = audioCtx.createOscillator();
+                        const g = audioCtx.createGain();
+                        o.connect(g);
+                        g.connect(audioCtx.destination);
+                        o.frequency.value = freq;
+                        g.gain.setValueAtTime(0.08, audioCtx.currentTime + i * 0.09);
+                        g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + i * 0.09 + 0.4);
+                        o.start(audioCtx.currentTime + i * 0.09);
+                        o.stop(audioCtx.currentTime + i * 0.09 + 0.4);
+                    });
+                }
+            } catch(e){}
+        }
+
+        function buildQuestionObj(rawQ, isFirstAttempt = true) {
+            return {
+                ...rawQ,
+                firstAttempt: isFirstAttempt
+            };
+        }
+
+        function startQuiz() {
+            const nameEl = document.getElementById('playerName');
+            const classEl = document.getElementById('playerClass');
+            
+            const nameInput = nameEl ? nameEl.value.trim() : "";
+            const classInput = classEl ? classEl.value.trim() : "";
+
+            if (!nameInput || !classInput) {
+                alert("Sila masukkan Nama dan Kelas anda sebelum memulakan latihan!");
+                return;
+            }
+
+            playerInfo.name = nameInput;
+            playerInfo.class = classInput;
+
+            setSafeText('displayPlayerInfo', `Pelajar: ${playerInfo.name} (${playerInfo.class})`);
+
+            initAudio();
+
+            boosterCounts = { c5050: 2, cHint: 2, cSkip: 1 };
+            updateBoosterUI();
+
+            questionQueue = rawQuestionsDatabase.map(q => buildQuestionObj(q, true));
+
+            totalOriginalQuestions = questionQueue.length;
+            initialScore = 0;
+            totalFirstAttempts = 0;
+            wrongAttempts = 0;
+
+            document.getElementById('startScreen')?.classList.add('hidden');
+            document.getElementById('resultScreen')?.classList.add('hidden');
+            document.getElementById('quizScreen')?.classList.remove('hidden');
+
+            setSafeText('liveScore', '0');
+
+            renderQuestion();
+        }
+
+        function updateBoosterUI() {
+            setSafeText('count5050', boosterCounts.c5050);
+            setSafeText('countHint', boosterCounts.cHint);
+            setSafeText('countSkip', boosterCounts.cSkip);
+
+            const btn5050 = document.getElementById('btn5050');
+            const btnHint = document.getElementById('btnHint');
+            const btnSkip = document.getElementById('btnSkip');
+
+            if (btn5050) btn5050.disabled = boosterCounts.c5050 <= 0 || !canAnswer;
+            if (btnHint) btnHint.disabled = boosterCounts.cHint <= 0 || !canAnswer;
+            if (btnSkip) btnSkip.disabled = boosterCounts.cSkip <= 0 || !canAnswer;
+        }
+
+        function useBooster5050() {
+            if (boosterCounts.c5050 <= 0 || !canAnswer) return;
+            
+            const currentQ = questionQueue[0];
+            const optionsContainer = document.getElementById('optionsContainer');
+            if (!optionsContainer) return;
+
+            const buttons = Array.from(optionsContainer.children);
+            let wrongIndices = [];
+
+            buttons.forEach((btn, idx) => {
+                if (idx !== currentQ.correctIndex && !btn.disabled) {
+                    wrongIndices.push(idx);
+                }
+            });
+
+            if (wrongIndices.length >= 2) {
+                const toRemove = wrongIndices.slice(0, 2);
+                toRemove.forEach(i => {
+                    buttons[i].disabled = true;
+                    buttons[i].classList.add('opacity-30', 'line-through');
+                });
+
+                boosterCounts.c5050--;
+                playSFX('booster');
+                updateBoosterUI();
+            }
+        }
+
+        function useBoosterHint() {
+            if (boosterCounts.cHint <= 0 || !canAnswer) return;
+
+            const currentQ = questionQueue[0];
+            setSafeText('hintText', currentQ.explanation);
+            
+            document.getElementById('hintBanner')?.classList.remove('hidden');
+
+            boosterCounts.cHint--;
+            playSFX('booster');
+            updateBoosterUI();
+        }
+
+        function useBoosterSkip() {
+            if (boosterCounts.cSkip <= 0 || !canAnswer) return;
+
+            boosterCounts.cSkip--;
+            playSFX('booster');
+
+            const skippedQ = questionQueue.shift();
+            questionQueue.push(skippedQ);
+
+            updateBoosterUI();
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            canAnswer = true;
+            updateBoosterUI();
+
+            const currentQ = questionQueue[0];
+
+            setSafeText('questionNum', currentQ.id);
+            setSafeText('sectionBadge', currentQ.section || "Bab 1: Kerajaan Alam Melayu");
+            setSafeText('queueCountInfo', `Baki Soalan: ${questionQueue.length}`);
+
+            const progressPercent = Math.min(100, Math.round(((totalOriginalQuestions - questionQueue.length) / totalOriginalQuestions) * 100));
+            setSafeText('progressPercentText', `${progressPercent}%`);
+
+            const progressBarEl = document.getElementById('progressBar');
+            if (progressBarEl) progressBarEl.style.width = `${progressPercent}%`;
+
+            setSafeText('questionText', currentQ.question);
+
+            const optionsContainer = document.getElementById('optionsContainer');
+            if (optionsContainer) {
+                optionsContainer.innerHTML = '';
+
+                currentQ.options.forEach((opt, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = "btn-friendly w-full text-left p-3.5 sm:p-4 rounded-2xl border-2 border-slate-200 bg-white hover:bg-blue-50 hover:border-blue-400 transition-all font-black text-slate-800 flex items-center justify-between group shadow-sm";
+                    btn.onclick = () => checkAnswer(index);
+                    
+                    btn.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs sm:text-sm leading-snug font-bold">${opt}</span>
+                        </div>
+                        <i class="fa-regular fa-circle text-slate-300 group-hover:text-blue-500 shrink-0 ml-2 text-base transition-colors"></i>
+                    `;
+                    optionsContainer.appendChild(btn);
+                });
+            }
+
+            document.getElementById('hintBanner')?.classList.add('hidden');
+            document.getElementById('feedbackBanner')?.classList.add('hidden');
+            document.getElementById('nextBtn')?.classList.add('hidden');
+        }
+
+        function checkAnswer(selectedIndex) {
+            if (!canAnswer) return;
+            canAnswer = false;
+            updateBoosterUI();
+
+            const currentQ = questionQueue[0];
+            const optionsContainer = document.getElementById('optionsContainer');
+            const buttons = optionsContainer ? optionsContainer.children : [];
+            const feedbackBanner = document.getElementById('feedbackBanner');
+            const feedbackIcon = document.getElementById('feedbackIcon');
+
+            Array.from(buttons).forEach(btn => btn.disabled = true);
+
+            if (selectedIndex === currentQ.correctIndex) {
+                playSFX('correct');
+                if (buttons[selectedIndex]) {
+                    buttons[selectedIndex].className = "w-full text-left p-3.5 sm:p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50 font-black text-emerald-950 flex items-center justify-between shadow-sm";
+                    const icon = buttons[selectedIndex].querySelector('i');
+                    if (icon) icon.className = "fa-solid fa-circle-check text-emerald-600 text-lg shrink-0 ml-2";
+                }
+
+                if (feedbackBanner) feedbackBanner.className = "p-4 rounded-2xl mb-4 text-sm font-bold flex items-start gap-3 bg-emerald-100 text-emerald-950 border-2 border-emerald-300 shadow-sm";
+                if (feedbackIcon) feedbackIcon.className = "fa-solid fa-circle-check text-2xl text-emerald-600 mt-0.5 shrink-0";
+                
+                setSafeText('feedbackTitle', 'TEPAT SEKALI! 🎯');
+                setSafeText('feedbackText', currentQ.explanation);
+
+                if (currentQ.firstAttempt) {
+                    initialScore += 1;
+                    totalFirstAttempts++;
+                    setSafeText('liveScore', initialScore);
+                }
+
+                questionQueue.shift();
+
+            } else {
+                playSFX('wrong');
+                wrongAttempts++;
+
+                if (buttons[selectedIndex]) {
+                    buttons[selectedIndex].className = "w-full text-left p-3.5 sm:p-4 rounded-2xl border-2 border-rose-400 bg-rose-50 font-black text-rose-950 flex items-center justify-between shadow-sm";
+                    const icon = buttons[selectedIndex].querySelector('i');
+                    if (icon) icon.className = "fa-solid fa-circle-xmark text-rose-600 text-lg shrink-0 ml-2";
+                }
+
+                if (buttons[currentQ.correctIndex]) {
+                    buttons[currentQ.correctIndex].className = "w-full text-left p-3.5 sm:p-4 rounded-2xl border-2 border-emerald-400 bg-emerald-50 font-black text-emerald-950 flex items-center justify-between";
+                }
+
+                if (feedbackBanner) feedbackBanner.className = "p-4 rounded-2xl mb-4 text-sm font-bold flex items-start gap-3 bg-rose-100 text-rose-950 border-2 border-rose-300 shadow-sm";
+                if (feedbackIcon) feedbackIcon.className = "fa-solid fa-triangle-exclamation text-2xl text-rose-600 mt-0.5 shrink-0";
+                
+                setSafeText('feedbackTitle', 'JAWAPAN KURANG TEPAT 💡');
+                setSafeText('feedbackText', `${currentQ.explanation} Soalan ini akan diulang pada penghujung giliran supaya anda lebih faham.`);
+
+                const wrongRawQ = rawQuestionsDatabase.find(q => q.id === currentQ.id);
+                questionQueue.shift();
+                
+                if (wrongRawQ) {
+                    const reshuffledQ = buildQuestionObj(wrongRawQ, false);
+                    questionQueue.push(reshuffledQ);
+                }
+            }
+
+            feedbackBanner?.classList.remove('hidden');
+            document.getElementById('nextBtn')?.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            if (questionQueue.length > 0) {
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            playSFX('complete');
+
+            try {
+                confetti({
+                    particleCount: 150,
+                    spread: 90,
+                    origin: { y: 0.6 }
+                });
+            } catch(e){}
+
+            document.getElementById('quizScreen')?.classList.add('hidden');
+            document.getElementById('resultScreen')?.classList.remove('hidden');
+
+            const accuracy = Math.round((totalFirstAttempts / totalOriginalQuestions) * 100);
+
+            setSafeText('resPlayerName', playerInfo.name);
+            setSafeText('finalScore', `${initialScore} / 30`);
+            setSafeText('accuracyPercent', `${accuracy}%`);
+            setSafeText('wrongAttemptsCount', wrongAttempts);
+
+            saveScoreToLeaderboard(playerInfo.name, playerInfo.class, initialScore, accuracy);
+
+            const badgeEl = document.getElementById('performanceBadge');
+            let motivationMsg = "";
+
+            if (initialScore >= 25) {
+                if (badgeEl) badgeEl.className = "mb-4 inline-block px-5 py-2 rounded-2xl font-black text-sm uppercase tracking-wide border-2 bg-emerald-100 text-emerald-900 border-emerald-300";
+                setSafeText('performanceBadge', "Penguasaan Baik (25–30 Markah)");
+                motivationMsg = "🎉 TAHNIAH! Penguasaan anda amat cemerlang! Anda mempunyai ingatan fakta dan kefahaman soalan aplikasi yang sangat kukuh dalam Bab 1.";
+            } else if (initialScore >= 19) {
+                if (badgeEl) badgeEl.className = "mb-4 inline-block px-5 py-2 rounded-2xl font-black text-sm uppercase tracking-wide border-2 bg-blue-100 text-blue-900 border-blue-300";
+                setSafeText('performanceBadge', "Memuaskan (19–24 Markah)");
+                motivationMsg = "👍 SYABAS! Keputusan anda memuaskan. Ulang kaji semula beberapa subtopik terutamanya kronologi kemasyhuran dan hubungan luar untuk memantapkan fakta.";
+            } else if (initialScore >= 13) {
+                if (badgeEl) badgeEl.className = "mb-4 inline-block px-5 py-2 rounded-2xl font-black text-sm uppercase tracking-wide border-2 bg-amber-100 text-amber-900 border-amber-300";
+                setSafeText('performanceBadge', "Perlu Pengukuhan (13–18 Markah)");
+                motivationMsg = "💪 USAHA LAGI! Anda memerlukan pengukuhan konsep dan fakta utama Bab 1. Buka semula nota dan cuba latihan ini sekali lagi!";
+            } else {
+                if (badgeEl) badgeEl.className = "mb-4 inline-block px-5 py-2 rounded-2xl font-black text-sm uppercase tracking-wide border-2 bg-rose-100 text-rose-900 border-rose-300";
+                setSafeText('performanceBadge', "Bimbingan Diperlukan (0–12 Markah)");
+                motivationMsg = "📚 JANGAN PUTUS ASA! Disyorkan untuk mengulang kaji Bab 1 secara berperingkat (Bahagian A hingga D) sebelum mencuba semula set ini.";
+            }
+
+            setSafeText('motivationMsg', motivationMsg);
+        }
+
+        function getLeaderboardData() {
+            try {
+                const data = localStorage.getItem('sejarah_bab1_uasa_leaderboard');
+                return data ? JSON.parse(data) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveScoreToLeaderboard(name, pClass, score, accuracy) {
+            try {
+                let leaderboard = getLeaderboardData();
+                
+                leaderboard.push({
+                    name: name,
+                    class: pClass,
+                    score: score,
+                    accuracy: accuracy,
+                    date: new Date().toLocaleDateString('ms-MY')
+                });
+
+                leaderboard.sort((a, b) => b.score - a.score || b.accuracy - a.accuracy);
+                leaderboard = leaderboard.slice(0, 20);
+
+                localStorage.setItem('sejarah_bab1_uasa_leaderboard', JSON.stringify(leaderboard));
+            } catch (e) {}
+        }
+
+        function renderLeaderboardList() {
+            const listContainer = document.getElementById('leaderboardList');
+            if (!listContainer) return;
+
+            const leaderboard = getLeaderboardData();
+
+            if (leaderboard.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="text-center py-8 text-slate-400 font-bold text-sm italic">
+                        Belum ada rekod. Jadi murid pertama yang tersenarai!
+                    </div>
+                `;
+                return;
+            }
+
+            listContainer.innerHTML = '';
+            leaderboard.forEach((item, index) => {
+                let badgeClass = "bg-slate-100 text-slate-600";
+                let iconHtml = `<span class="font-black text-xs">#${index + 1}</span>`;
+
+                if (index === 0) {
+                    badgeClass = "bg-amber-100 text-amber-800 border border-amber-300";
+                    iconHtml = `<i class="fa-solid fa-crown text-amber-500"></i>`;
+                } else if (index === 1) {
+                    badgeClass = "bg-slate-200 text-slate-700 border border-slate-300";
+                    iconHtml = `<i class="fa-solid fa-medal text-slate-400"></i>`;
+                } else if (index === 2) {
+                    badgeClass = "bg-amber-700/10 text-amber-900 border border-amber-600/30";
+                    iconHtml = `<i class="fa-solid fa-award text-amber-700"></i>`;
+                }
+
+                const itemEl = document.createElement('div');
+                itemEl.className = "flex items-center justify-between bg-slate-50 p-3.5 rounded-2xl border border-slate-200 text-sm shadow-sm";
+                itemEl.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-xl flex items-center justify-center ${badgeClass} shrink-0">
+                            ${iconHtml}
+                        </div>
+                        <div>
+                            <div class="font-black text-slate-800 leading-tight">${item.name}</div>
+                            <div class="text-xs font-bold text-slate-400 mt-0.5">${item.class} • ${item.date}</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-display font-black text-blue-600 text-base">${item.score} / 30 m</div>
+                        <div class="text-[10px] font-black text-slate-400">${item.accuracy}% ketepatan</div>
+                    </div>
+                `;
+                listContainer.appendChild(itemEl);
+            });
+        }
+
+        function toggleLeaderboardModal(show) {
+            const modal = document.getElementById('leaderboardModal');
+            if (modal) {
+                if (show) {
+                    renderLeaderboardList();
+                    modal.classList.remove('hidden');
+                } else {
+                    modal.classList.add('hidden');
+                }
+            }
+        }
+
+        function clearLeaderboard() {
+            if (confirm("Adakah anda pasti mahu memadamkan rekod kedudukan?")) {
+                try {
+                    localStorage.removeItem('sejarah_bab1_uasa_leaderboard');
+                } catch(e){}
+                renderLeaderboardList();
+            }
+        }
+
+        function restartQuiz() {
+            document.getElementById('resultScreen')?.classList.add('hidden');
+            document.getElementById('startScreen')?.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
